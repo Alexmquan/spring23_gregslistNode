@@ -32,12 +32,13 @@ class JobsService {
 
     originalJob.save()
     return originalJob
-
-
   }
 
-
-
+  async deleteJob(jobId) {
+    const deletedJob = await this.getJobById(jobId)
+    await deletedJob.remove()
+    return
+  }
 }
 
 export const jobsService = new JobsService()
