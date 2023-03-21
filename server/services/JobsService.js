@@ -8,6 +8,12 @@ class JobsService {
     return jobs
   }
 
+  async createJob(jobData) {
+    const newJob = await dbContext.Jobs.create(jobData)
+    return newJob
+  }
+
+
 }
 
 export const jobsService = new JobsService()

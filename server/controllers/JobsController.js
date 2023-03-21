@@ -11,8 +11,18 @@ export class JobsController extends BaseController {
   async getJobs(req, res, next) {
     try {
       const jobs = req.query
-      const jobsData = jobsService.getJobs(jobs)
+      const jobsData = await jobsService.getJobs(jobs)
       res.send(jobsData)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async createJob(req, res, next) {
+    try {
+      const job = req.body
+      const jobData = await jobsService.createJob(job)
+      res.send(jobData)
     } catch (error) {
       next(error)
     }
