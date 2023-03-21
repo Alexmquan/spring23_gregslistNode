@@ -8,7 +8,7 @@ export class JobsController extends BaseController {
       .get('', this.getJobs)
       .get('/:jobId', this.getJobById)
       .post('', this.createJob)
-      .put('/jobId', this.editJob)
+      .put('/:jobId', this.editJob)
 
   }
   async getJobs(req, res, next) {
@@ -46,6 +46,7 @@ export class JobsController extends BaseController {
       const jobId = req.params.jobId
       const editInfo = req.body
       const editedJob = await jobsService.editJob(editInfo, jobId)
+      res.send(editedJob)
     } catch (error) {
       next(error)
     }
